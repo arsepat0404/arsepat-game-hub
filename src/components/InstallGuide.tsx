@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Download, Smartphone, Apple, Monitor, Copy, Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ChevronDown, Download, Smartphone, Apple, Monitor } from "lucide-react";
 import { toast } from "sonner";
 import { useStore } from "@/lib/store";
 
@@ -47,12 +47,9 @@ export function InstallGuide() {
   const { t, lang } = useStore();
   const [evt, setEvt] = useState<BIPEvent | null>(null);
   const [installed, setInstalled] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const siteUrl = useRef<string>("https://arsepat-game-hub.pages.dev");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      siteUrl.current = window.location.origin;
       const standalone =
         window.matchMedia?.("(display-mode: standalone)").matches ||
         // @ts-expect-error iOS
@@ -84,24 +81,6 @@ export function InstallGuide() {
     await evt.prompt();
     await evt.userChoice;
     setEvt(null);
-  };
-
-  const snippet = `<!-- Arsepat: thumbnail preview PWA / back-to-hub (ganti GAME_ID dengan id game di spreadsheet) -->
-<a href="${siteUrl.current}/?game=GAME_ID" rel="noopener"
-   style="display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:14px;background:#062c16;color:#facc15;font-family:system-ui,sans-serif;font-weight:700;text-decoration:none;border:1px solid #facc15;box-shadow:0 6px 24px rgba(250,204,21,.18);">
-  <img src="${siteUrl.current}/icon-192.png" alt="Arsepat Game Hub" width="28" height="28" style="border-radius:8px;" />
-  <span>← ${lang === "id" ? "Buka di Arsepat Game Hub" : "Open in Arsepat Game Hub"}</span>
-</a>`;
-
-  const copySnippet = async () => {
-    try {
-      await navigator.clipboard.writeText(snippet);
-      setCopied(true);
-      toast.success(lang === "id" ? "Snippet disalin!" : "Snippet copied!");
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      toast.error("Could not copy");
-    }
   };
 
   return (
@@ -186,37 +165,6 @@ export function InstallGuide() {
             </li>
           </ol>
         </Accordion>
-      </div>
-
-      <div className="rounded-xl border border-border/60 bg-background/30 p-4 space-y-3">
-        <div>
-          <h3 className="font-display font-semibold text-sm">
-            {lang === "id"
-              ? "Tombol Kembali ke PWA (untuk dipasang di tiap game)"
-              : "Back-to-PWA Button (paste into each game)"}
-          </h3>
-          <p className="mt-1 text-xs text-muted-foreground">
-            {lang === "id"
-              ? 'Karena tombol "Mainkan Sekarang" sekarang membuka game di tab yang sama, pasang snippet ini di setiap game agar pemain bisa kembali ke Arsepat dengan satu klik (tanpa membuka tab baru).'
-              : 'Since "Play Now" now opens games in the same tab, paste this snippet into each game so players can return to Arsepat in one click (no new tab).'}
-          </p>
-        </div>
-        <pre className="text-[11px] leading-relaxed bg-background/60 rounded-lg p-3 overflow-x-auto border border-border/40">
-          <code>{snippet}</code>
-        </pre>
-        <button
-          onClick={copySnippet}
-          className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-accent/15 text-accent text-xs font-semibold hover:bg-accent/25 transition"
-        >
-          {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
-          {copied
-            ? lang === "id"
-              ? "Tersalin"
-              : "Copied"
-            : lang === "id"
-              ? "Salin Snippet"
-              : "Copy Snippet"}
-        </button>
       </div>
     </div>
   );
