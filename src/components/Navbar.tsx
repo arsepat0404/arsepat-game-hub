@@ -6,7 +6,7 @@ import { Gamepad2, WifiOff } from "lucide-react";
 import { PLACEHOLDER_LOGO } from "@/lib/assets";
 
 export function Navbar() {
-  const { t, metadata } = useStore();
+  const { t, metadata, lang, setLang } = useStore();
   const title = metadata.site_title || "Arsepat";
   const logo = metadata.app_logo_url || PLACEHOLDER_LOGO;
 
@@ -62,6 +62,13 @@ export function Navbar() {
               {item.label}
             </Link>
           ))}
+          <button
+            onClick={() => setLang(lang === "id" ? "en" : "id")}
+            aria-label="Toggle language"
+            className="ml-0.5 sm:ml-1 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold uppercase hover:bg-accent/10 transition-colors text-foreground/80 hover:text-foreground border border-border/50"
+          >
+            {lang}
+          </button>
         </nav>
       </div>
 
