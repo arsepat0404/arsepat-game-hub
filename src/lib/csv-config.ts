@@ -3,18 +3,20 @@
 // ----------------------------------------------------------------------------
 // These URLs are hardcoded on purpose. End users do NOT see or edit them.
 // To update the data source, edit this file and redeploy.
-//
-// See ARSEPAT_GUIDE.md (project root) for instructions on how to obtain
-// "Publish to web" CSV URLs and the required column structure for each tab.
 // ============================================================================
 
 export type SheetKey = "games" | "localization" | "metadata";
 
-const BASE =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSOqjkvAFy7qU8NEZcIJubfGkPi6dm8sdgdp2La126hWaTYAxs3nYMzMpq9BHyHdoiC4qXC-aDqUyZH/pub";
+// Using a Google Apps Script Web App as a proxy instead of the "Publish to
+// web" CSV export. This avoids CORS/403 issues when fetched from a hosted
+// domain (e.g. Cloudflare Pages/Workers) and reads directly from the active
+// spreadsheet via SpreadsheetApp, so no spreadsheet ID/URL needs to be
+// embedded here.
+const APPS_SCRIPT_BASE =
+  "https://script.google.com/macros/s/AKfycbzvHe_ZBWZURHzvlwXZa6GXsBkOXCpYdgozFKVHPeQMaWctZsWyhunI4Bvr2ek_DpG0sw/exec";
 
 export const CSV_URLS: Record<SheetKey, string> = {
-  games: `${BASE}?gid=0&single=true&output=csv`,
-  localization: `${BASE}?gid=2118621333&single=true&output=csv`,
-  metadata: `${BASE}?gid=744840316&single=true&output=csv`,
+  games: `${APPS_SCRIPT_BASE}?sheet=games`,
+  localization: `${APPS_SCRIPT_BASE}?sheet=localization`,
+  metadata: `${APPS_SCRIPT_BASE}?sheet=metadata`,
 };
