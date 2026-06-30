@@ -149,8 +149,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [lastFetchedAt, setLastFetchedAt] = useState<number | null>(cached?.ts ?? null);
 
   const [lang, setLangState] = useState<Lang>(() => {
-    if (typeof window === "undefined") return "en";
-    return (localStorage.getItem("arsepat:lang") as Lang) || "en";
+    if (typeof window === "undefined") return "id";
+    return (localStorage.getItem("arsepat:lang") as Lang) || "id";
   });
   const [theme, setThemeState] = useState<"dark" | "light">(() => {
     if (typeof window === "undefined") return "dark";
