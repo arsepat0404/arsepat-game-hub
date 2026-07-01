@@ -6,10 +6,10 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Arsepat" },
-      { name: "description", content: "About the Arsepat Game Hub and its creator." },
-      { property: "og:title", content: "About — Arsepat" },
-      { property: "og:description", content: "About the Arsepat Game Hub and its creator." },
+      { title: "Tentang — Arsepat" },
+      { name: "description", content: "Kenalan dengan Arsepat dan karya-karya game-nya." },
+      { property: "og:title", content: "Tentang — Arsepat" },
+      { property: "og:description", content: "Kenalan dengan Arsepat dan karya-karya game-nya." },
     ],
   }),
   component: AboutPage,
@@ -26,10 +26,10 @@ function AboutPage() {
         animate={{ opacity: 1, y: 0 }}
         className="glass rounded-3xl p-8 md:p-12 max-w-3xl mx-auto"
       >
-        <h1 className="font-display text-4xl md:text-5xl font-bold mb-5">
+        <h1 className="font-display text-2xl md:text-3xl font-bold mb-5">
           {t("nav_about")} <span className="text-accent">{brand}</span>
         </h1>
-        <p className="text-foreground/80 text-lg leading-relaxed whitespace-pre-line">{about}</p>
+        <p className="text-foreground/80 text-base leading-relaxed whitespace-pre-line">{about}</p>
       </motion.div>
     </Layout>
   );
