@@ -29,8 +29,8 @@ export function MetaSync() {
   const { metadata, lang } = useStore();
   useEffect(() => {
     const title = metadata.site_title || "Arsepat";
-    const fullTitle = `${title} — Game Hub`;
-    const desc = metadata.site_meta_description || "A curated hub of games and experiments by Arsepat.";
+    const fullTitle = metadata.og_title || `${title} — Game Hub`;
+    const desc = metadata.og_description || metadata.site_meta_description || "Kumpulan game seru buatan Arsepat. Langsung main tanpa download!";
     // Language-specific OG image with spreadsheet override
     const ogId = metadata.og_image_id_url || metadata.og_image_url || "/og-image.jpg";
     const ogEn = metadata.og_image_en_url || metadata.og_image_url || "/og-image-en.jpg";
