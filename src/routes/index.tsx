@@ -23,8 +23,8 @@ export const Route = createFileRoute("/")({
         name: "description",
         content: "A curated hub of games and experiments by Arsepat.",
       },
-      { property: "og:title", content: "Arsepat Game Hub" },
-      { property: "og:description", content: "Releases, experiments, and works in progress." },
+      { property: "og:title", content: "Arsepat — Main Bareng, Gratis!" },
+      { property: "og:description", content: "Kumpulan game seru buatan Arsepat. Teka-teki, strategi, multiplayer — langsung main tanpa download!" },
     ],
   }),
   component: HomePage,
@@ -111,7 +111,7 @@ function HomePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="font-display text-4xl md:text-6xl font-bold tracking-tight"
+          className="font-display text-3xl md:text-5xl font-bold tracking-tight"
         >
           {metadata.hero_title || t("hero_title")}
         </motion.h1>
