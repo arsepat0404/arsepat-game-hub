@@ -8,8 +8,8 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "Settings — Arsepat" },
-      { name: "description", content: "Configure language and theme for the Arsepat Game Hub." },
+      { title: "Pengaturan — Arsepat" },
+      { name: "description", content: "Atur bahasa dan tampilan Arsepat Game Hub." },
     ],
   }),
   component: SettingsPage,
@@ -25,7 +25,7 @@ function SettingsPage() {
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="font-display text-4xl font-bold"
+          className="font-display text-2xl md:text-3xl font-bold"
         >
           {t("nav_settings")}
         </motion.h1>
